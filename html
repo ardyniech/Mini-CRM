@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini CRM - Apple Style</title>
+    <style>
+        /* Gaya Dasar ala Apple */
+        :root {
+            --apple-bg: #f5f5f7;
+            --apple-card: rgba(255, 255, 255, 0.8);
+            --apple-blue: #007aff;
+            --apple-text: #1d1d1f;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--apple-bg);
+            color: var(--apple-text);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px; /* Ukuran pas untuk layar HP */
+        }
+
+        h1 {
+            font-weight: 600;
+            font-size: 24px;
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
+        }
+
+        /* Kartu dengan efek Glassmorphism */
+        .card {
+            background: var(--apple-card);
+            backdrop-filter: blur(10px);
+            border-radius: 18px;
+            padding: 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #86868b;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #d2d2d7;
+            border-radius: 10px;
+            font-size: 14px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: var(--apple-blue);
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--apple-blue);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        button:active {
+            opacity: 0.7;
+        }
+
+        /* Daftar Pelanggan */
+        .customer-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .customer-item:last-child {
+            border-bottom: none;
+        }
+
+        .name { font-weight: 500; }
+        .status { 
+            font-size: 12px; 
+            padding: 4px 8px; 
+            border-radius: 20px; 
+            background: #e1e1e3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Mini CRM</h1>
+
+    <div class="card">
+        <label>NAMA PELANGGAN</label>
+        <input type="text" id="custName" placeholder="Contoh: Budi Santoso">
+        
+        <label>STATUS</label>
+        <input type="text" id="custStatus" placeholder="Contoh: Lead / Closing">
+        
+        <button onclick="addCustomer()">Tambah Pelanggan</button>
+    </div>
+
+    <div class="card">
+        <label>DAFTAR PELANGGAN</label>
+        <div id="customerList">
+            </div>
+    </div>
+</div>
+
+<script>
+    function addCustomer() {
+        const name = document.getElementById('custName').value;
+        const status = document.getElementById('custStatus').value;
+
+        if (name === "" || status === "") {
+            alert("Mohon isi semua bidang");
+            return;
+        }
+
+        const list = document.getElementById('customerList');
+        
+        // Membuat elemen list baru
+        const item = document.createElement('div');
+        item.className = 'customer-item';
+        item.innerHTML = `
+            <span class="name">${name}</span>
+            <span class="status">${status}</span>
+        `;
+
+        list.appendChild(item);
+
+        // Reset input
+        document.getElementById('custName').value = "";
+        document.getElementById('custStatus').value = "";
+    }
+</script>
+
+</body>
+</html>
