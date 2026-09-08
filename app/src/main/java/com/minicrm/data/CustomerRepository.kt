@@ -1,14 +1,16 @@
 package com.minicrm.data
 
 import com.minicrm.model.Customer
+import kotlinx.coroutines.flow.Flow
 
-interface ICustomerRepository {
-    fun getCustomers(): List<Customer>
-}
+class CustomerRepository(private val customerDao: CustomerDao) {
+    val allCustomers: Flow<List<Customer>> = customerDao.getAllCustomers()
 
-class CustomerRepository : ICustomerRepository {
-    override fun getCustomers(): List<Customer> {
-        // Simulated data retrieval
-        return listOf(Customer("1", "John Doe", "john@example.com", "123456789"))
+    suspend fun insert(customer: Customer) {
+        customerDao.insert(customer)
+    }
+
+    suspend fun delete(customer: Customer) {
+        customerDao.delete(customer)
     }
 }
