@@ -5,8 +5,8 @@ import com.minicrm.model.Customer
 class CustomerRepository {
     fun getCustomers(): List<Customer> {
         return listOf(
-            Customer(1, "Budi Santoso", "budi@example.com"),
-            Customer(2, "Siti Aminah", "siti@example.com")
+            Customer("1", "John Doe", "john@example.com", "123456789"),
+            Customer("2", "Jane Smith", "jane@example.com", "987654321")
         )
     }
 }
