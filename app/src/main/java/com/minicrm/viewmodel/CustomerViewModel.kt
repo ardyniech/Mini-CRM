@@ -1,16 +1,21 @@
 package com.minicrm.viewmodel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.minicrm.data.ICustomerRepository
+import androidx.lifecycle.viewModelScope
+import com.minicrm.data.CustomerRepository
 import com.minicrm.model.Customer
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.launch
 
-class CustomerViewModel(private val repository: ICustomerRepository) : ViewModel() {
-    fun getCustomerList(): List<Customer> = repository.getCustomers()
-}
+class CustomerViewModel(private val repository: CustomerRepository) : ViewModel() {
+    val customers = repository.allCustomers.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000),
+        initialValue = emptyList()
+    )
 
-class CustomerViewModelFactory(private val repository: ICustomerRepository) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return CustomerViewModel(repository) as T
+    fun addCustomer(customer: Customer) = viewModelScope.launch {
+        repository.insert(customer)
     }
 }
