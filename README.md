@@ -1,23 +1,18 @@
 # Mini-CRM
 
-Mini-CRM adalah aplikasi manajemen hubungan pelanggan (Customer Relationship Management) berbasis Android yang dirancang dengan arsitektur modern menggunakan Room Database dan MVVM pattern.
+Mini-CRM adalah aplikasi manajemen hubungan pelanggan (Customer Relationship Management) berbasis Android yang dibangun dengan arsitektur modern.
 
 ## Fitur Utama
 - Manajemen data pelanggan (CRUD).
-- Penyimpanan lokal dengan Room Persistence Library.
-- Implementasi Dependency Injection untuk arsitektur yang bersih.
+- Arsitektur MVVM (Model-View-ViewModel).
+- Integrasi Room Database untuk persistensi data.
+- Dependency Injection dengan Koin.
 
-## Teknologi yang Digunakan
+## Teknologi
 - Kotlin
 - Room Database
 - ViewModel & LiveData
-- Coroutines (untuk operasi asinkron)
-
-## Struktur Proyek
-- `data/`: Mengelola akses data (DAO, Database, Repository).
-- `ui/`: Antarmuka pengguna (Activity).
-- `viewmodel/`: Logika bisnis aplikasi.
-- `di/`: Konfigurasi Dependency Injection.
+- Coroutines
 
 ## Lisensi
 MIT
