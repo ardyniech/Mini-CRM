@@ -1,13 +1,8 @@
 package com.minicrm.model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity(tableName = "customers")
 data class Customer(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    val id: String,
     val name: String,
     val email: String,
-    val phone: String,
-    val company: String
+    val phone: String
 )
