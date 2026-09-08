@@ -1,19 +1,18 @@
 package com.minicrm.viewmodel
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.minicrm.data.CustomerRepository
 import com.minicrm.model.Customer
 import kotlinx.coroutines.launch
 
 class CustomerViewModel(private val repository: CustomerRepository) : ViewModel() {
-    val allCustomers = repository.allCustomers
+    val allCustomers: LiveData<List<Customer>> = repository.allCustomers.asLiveData()
 
-    fun addCustomer(customer: Customer) = viewModelScope.launch {
+    fun insert(customer: Customer) = viewModelScope.launch {
         repository.insert(customer)
     }
 
-    fun deleteCustomer(customer: Customer) = viewModelScope.launch {
+    fun delete(customer: Customer) = viewModelScope.launch {
         repository.delete(customer)
     }
 }
