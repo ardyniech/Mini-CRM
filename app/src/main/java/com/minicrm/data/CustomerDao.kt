@@ -6,12 +6,12 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CustomerDao {
-    @Query("SELECT * FROM customer")
+    @Query("SELECT * FROM customers ORDER BY name ASC")
     fun getAllCustomers(): Flow<List<Customer>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCustomer(customer: Customer)
+    suspend fun insert(customer: Customer)
 
     @Delete
-    suspend fun deleteCustomer(customer: Customer)
+    suspend fun delete(customer: Customer)
 }
