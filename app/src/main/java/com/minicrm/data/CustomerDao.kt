@@ -1,8 +1,6 @@
 package com.minicrm.data
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.minicrm.model.Customer
 import kotlinx.coroutines.flow.Flow
 
@@ -11,6 +9,9 @@ interface CustomerDao {
     @Query("SELECT * FROM customer")
     fun getAllCustomers(): Flow<List<Customer>>
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertCustomer(customer: Customer)
+
+    @Delete
+    suspend fun deleteCustomer(customer: Customer)
 }
