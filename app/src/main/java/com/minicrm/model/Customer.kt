@@ -1,10 +1,11 @@
 package com.minicrm.model
 
-/**
- * Immutable data model for Customer entity.
- */
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "customers")
 data class Customer(
-    val id: String,
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
     val name: String,
     val email: String,
     val phone: String
